@@ -9,7 +9,7 @@ import taskRouter from "./src/TaskTracker/task.router.js";
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://task-master-frontend-sigma.vercel.app",
     credentials: true, // ✅ This must be set to allow cookies
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
