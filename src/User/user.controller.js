@@ -58,7 +58,10 @@ export const logoutUser = async (req, res, next) => {
     .status(200)
     .cookie("token", null, {
       expires: new Date(Date.now()),
-      httpOnly: true,
+      httpOnly: true, // Secure against XSS
+      secure: process.env.NODE_ENV === "production", // ✅ Use secure cookies in production (HTTPS)
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ None for cross-origin in prod, Lax for local dev
+      path: "/",
     })
     .json({ success: true, msg: "logout successful" });
 };
